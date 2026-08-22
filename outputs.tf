@@ -1,11 +1,14 @@
 output "vpc_id" {
-  value = module.networking.vpc_id
+  description = "ID of the VPC."
+  value       = module.networking.vpc_id
 }
 
 output "subnet_id" {
-  value = module.networking.subnet_id
+  description = "ID of the subnet."
+  value       = module.networking.subnet_id
 }
 
 output "sg_id" {
-  value = module.security.sg_id
+  description = "ID of the security group."
+  value       = module.security.sg_id
 }
