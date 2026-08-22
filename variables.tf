@@ -1,14 +1,23 @@
-terraform {
-  required_version = ">= 1.5.0, < 2.0.0"
-
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
-    }
-  }
+variable "vpc_cidr" {
+  description = "CIDR block for the VPC"
+  type        = string
+  default     = "10.0.0.0/16"
 }
 
-provider "aws" {
-  region = "us-east-1"
+variable "subnet_cidr" {
+  description = "CIDR block for the subnet"
+  type        = string
+  default     = "10.0.1.0/24"
+}
+
+variable "sg_ingress_port" {
+  description = "TCP port allowed for inbound traffic"
+  type        = number
+  default     = 22
+}
+
+variable "environment" {
+  description = "Deployment environment"
+  type        = string
+  default     = "dev"
 }
