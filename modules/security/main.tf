@@ -1,25 +1,26 @@
 variable "sg_ingress_port" {
-  description = "TCP port allowed for inbound traffic."
+  description = "TCP port allowed for inbound SSH traffic"
   type        = number
+  default     = 22
 }
 
 variable "environment" {
-  description = "Deployment environment."
+  description = "Deployment environment"
   type        = string
+  default     = "dev"
 }
 
 variable "vpc_id" {
-  description = "ID of the VPC where the security group will be created."
+  description = "ID of the VPC where the security group will be created"
   type        = string
 }
 
 resource "aws_security_group" "my_sg" {
-  name        = "${var.environment}-sg"
-  description = "Allow SSH access"
+  name        = "MyStack-MySecurityGroup-kwG1kHlpu3dg"
+  description = "Allow SSH"
   vpc_id      = var.vpc_id
 
   ingress {
-    description = "SSH access"
     from_port   = var.sg_ingress_port
     to_port     = var.sg_ingress_port
     protocol    = "tcp"
@@ -39,6 +40,6 @@ resource "aws_security_group" "my_sg" {
 }
 
 output "sg_id" {
-  description = "ID of the security group."
+  description = "ID of the security group"
   value       = aws_security_group.my_sg.id
 }
